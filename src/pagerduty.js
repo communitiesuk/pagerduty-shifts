@@ -9,7 +9,7 @@ async function getScheduleShiftsByUser({
   const queryUntil = dayjs(until).format('YYYY-MM-DD');
 
   const pd = api({ token });
-  const pdSchedule = await pd.get(`/schedules/${schedule}?since=${queryFrom}&until=${queryUntil}`);
+  const pdSchedule = await pd.get(`/schedules/${schedule}?since=${queryFrom}&until=${queryUntil}`).catch(console.error);
   const scheduleEntries = pdSchedule.data.schedule.final_schedule.rendered_schedule_entries;
 
   return scheduleEntries.reduce((acc, shift) => {
