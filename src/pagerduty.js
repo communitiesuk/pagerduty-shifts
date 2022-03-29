@@ -10,6 +10,11 @@ async function getScheduleShiftsByUser({
 
   const pd = api({ token });
   const pdSchedule = await pd.get(`/schedules/${schedule}?since=${queryFrom}&until=${queryUntil}`).catch(console.error);
+
+  if (pdSchedule === undefined) {
+    console.log('No data returned!');
+  }
+
   const scheduleEntries = pdSchedule.data.schedule.final_schedule.rendered_schedule_entries;
 
   return scheduleEntries.reduce((acc, shift) => {
