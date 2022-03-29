@@ -58,7 +58,7 @@ async function main() {
     console.log(shifts);
   } else {
     const totals = tally(shifts);
-    const csv = generateCsv(totals);
+    const csv = generateCsv(totals, argv.from, argv.until);
     console.log(csv);
   }
 }

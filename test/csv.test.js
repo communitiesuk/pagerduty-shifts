@@ -46,4 +46,20 @@ describe('generateCsv()', () => {
     // Then
     expect(csv).toEqual(expect.stringMatching(/Alice(.|\n)*Bob(.|\n)*Charlie(.|\n)*Dave/));
   });
+
+  it('should add the date range to the bottom of the CSV', () => {
+    // Given
+    const totals = {
+      Charlie: { weekdayShifts: 1, weekendShifts: 2, totalShifts: 3 },
+      Alice: { weekdayShifts: 1, weekendShifts: 2, totalShifts: 3 },
+      Bob: { weekdayShifts: 1, weekendShifts: 2, totalShifts: 3 },
+      Dave: { weekdayShifts: 1, weekendShifts: 2, totalShifts: 3 },
+    };
+
+    // When
+    const csv = generateCsv(totals, '2022-02-01', '2022-02-10');
+
+    // Then
+    expect(csv).toEqual(expect.stringMatching(/Range: 2022-02-01 to 2022-02-10/));
+  });
 });
