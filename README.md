@@ -1,4 +1,4 @@
-# pd-shifts
+ -- ope # pd-shifts
 
 This is a command-line tool to generate a CSV tally of on-call shifts per user for one or more PagerDuty schedules.
 
@@ -55,10 +55,10 @@ $ pd-shifts \
 
 ### Options
 
-- `-f, --from` - The start date of the export (inclusive)
-- `-u, --until` - The end date of the export (exclusive)
 - `-t, --token` - The PagerDuty API token
 - `-s, --schedule` - ID of the PagerDuty schedule to count shifts from. Can be specified multiple times for multiple schedules.
+- `-f, --from` - The start date of the export (inclusive)
+- `-u, --until` - The end date of the export (exclusive)
 - `-l, --list-shifts` - Output a JSON listing of the shifts for each user, instead of the regular CSV output. Helpful for debugging.
 - `--max-shift-length` - The maximum length of a single shift, in hours. Default: 24 hours.
     - This is needed because the PagerDuty API 'squashes' together multiple consecutive shifts, and so we need a way of determining at what point to 'chop' them back up again.
@@ -69,4 +69,20 @@ The bank holidays are determined from the `data/bank-holidays.json` file, which 
 
 ```sh
 $ curl "https://www.gov.uk/bank-holidays.json" > data/bank-holidays.json
+```
+
+## Run the tests
+
+To run the Jest tests, run the command
+
+```
+npm run test
+```
+
+## Troubleshooting
+
+If you receive an error (sh: husky: command not found) then run the command
+
+```
+npm i husky --save-dev
 ```
