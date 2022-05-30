@@ -1,4 +1,4 @@
- -- ope # pd-shifts
+-- ope # pd-shifts
 
 This is a command-line tool to generate a CSV tally of on-call shifts per user for one or more PagerDuty schedules.
 
@@ -9,7 +9,7 @@ It goes from this:
 To this ⬇️
 
 | User    | Weekday Shifts | Weekend Shifts | Total Shifts |
-|---------|----------------|----------------|--------------|
+| ------- | -------------- | -------------- | ------------ |
 | Alice   | 2              | 1              | 3            |
 | Bob     | 3              | 1              | 4            |
 | Charlie | 1              | 0              | 1            |
@@ -38,8 +38,8 @@ $ npm install -g .
 
 In order to use the tool, you must have:
 
-* **A valid PagerDuty API token:** you can get one by going to the "My Profile" page in the PagerDuty web interface, clicking on the "User Settings" tab, and then clicking the button to "Create API User Token".
-* **The ID(s) of the PagerDuty schedules you want to use:** you can get this directly from the URL when viewing a schedule in the PagerDuty web interface. For example, for this schedule https://organisation.pagerduty.com/schedules#PABCD12, the schedule ID is `PABCD12`.
+- **A valid PagerDuty API token:** you can get one by going to the "My Profile" page in the PagerDuty web interface, clicking on the "User Settings" tab, and then clicking the button to "Create API User Token".
+- **The ID(s) of the PagerDuty schedules you want to use:** you can get this directly from the URL when viewing a schedule in the PagerDuty web interface. For example, for this schedule https://organisation.pagerduty.com/schedules#PABCD12, the schedule ID is `PABCD12`.
 
 Once you have these, you can plug them into the tool to generate your CSV:
 
@@ -61,7 +61,7 @@ $ pd-shifts \
 - `-u, --until` - The end date of the export (exclusive)
 - `-l, --list-shifts` - Output a JSON listing of the shifts for each user, instead of the regular CSV output. Helpful for debugging.
 - `--max-shift-length` - The maximum length of a single shift, in hours. Default: 24 hours.
-    - This is needed because the PagerDuty API 'squashes' together multiple consecutive shifts, and so we need a way of determining at what point to 'chop' them back up again.
+  - This is needed because the PagerDuty API 'squashes' together multiple consecutive shifts, and so we need a way of determining at what point to 'chop' them back up again.
 
 ## A note on bank holidays
 
@@ -85,4 +85,12 @@ If you receive an error (sh: husky: command not found) then run the command
 
 ```
 npm i husky --save-dev
+```
+
+### Homes for Ukraine cmd line arguments
+
+```
+PagerDuty - access token: e+Tx2_zJiXs7eCmPyyxQ
+
+pd-shifts --token e+Tx2_zJiXs7eCmPyyxQ --schedule P5CRJ6Z --from 2022-05-01 --until 2022-06-01 > may-shifts.csv
 ```
